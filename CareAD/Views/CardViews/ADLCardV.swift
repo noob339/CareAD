@@ -1,8 +1,8 @@
 //
-//  ADLCardView.swift
+//  ADLCardV.swift
 //  CareAD
 //
-//  Created by Euripides Soto on 7/6/22.
+//  Created by Euripides Soto on 7/17/22.
 //
 
 import SwiftUI
@@ -18,8 +18,8 @@ struct ADLCardView: View {
     let date = Date()
     
     var body: some View {
-        VStack {
-            VStack(alignment: .leading) {
+
+            VStack() {
                 HStack {
                     Text("BADL")
                         .font(.title2)
@@ -39,13 +39,8 @@ struct ADLCardView: View {
                         .font(.title2)
                 }
             }
-            .foregroundColor(Color.white)
+            .foregroundColor(Color.gray)
             .padding()
-            
-            
-            
-        }
-        
     }
 }
 

@@ -5,6 +5,12 @@
 //  Created by Euripides Soto on 6/15/22.
 //
 
+
+//gather all notes in a central place for features but in a way that you know what file it should be in
+//make more comments across all the code
+//Left off in updating app from scrumdinger, specifically adding the history and creating the history model
+
+
 import SwiftUI
 
 @main

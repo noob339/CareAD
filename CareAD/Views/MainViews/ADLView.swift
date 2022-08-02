@@ -8,9 +8,17 @@
 import SwiftUI
 
 struct ADLView: View {
+    
+    @Binding var ADL: [ADLSurvey]
+    @State private var isPresentingNewSurveyView = false
+    @State private var newSurveyData = ADLSurvey.Data()
+    
     var body: some View {
 
         VStack{
+            Spacer()
+                .frame(height: 200)
+            
             Text("ADL Survey")
                 .font(.largeTitle)
                 .padding(.top)
@@ -54,29 +62,67 @@ struct ADLView: View {
                         .font(.system(size: 20, weight: .bold))
 
                 }
+                
             }
+            
             Spacer()
                 .frame(height: 20)
-            Section(header: Text("Past Survey")) {
-                
-                ADLCardView()
-                    .background(Color("purp"))
-                    .previewLayout(.fixed(width: 400, height: 80))
+
+            List {
+                Section(header: Text("Past Survey")) {
+                    ForEach($ADL) { $adl in
+                        NavigationLink(destination: ADLDetailView(adl: $adl)) {
+                            ADLCardView()
+                        }
+                        .listRowBackground(adl.theme.mainColor)
+                            
+                    }
+                }
             }
-            .foregroundColor(Color("purp"))
-            
+            .toolbar {
+                Button(action: {
+                    isPresentingNewSurveyView = true
+                }) {
+                    Image(systemName: "plus")
+                }
+                .accessibilityLabel("New Survey")
+            }
+            .sheet(isPresented: $isPresentingNewSurveyView) {
+                NavigationView {
+                    ADLEditView(data: $newSurveyData)
+                        .toolbar {
+                            ToolbarItem(placement: .cancellationAction) {
+                                Button("Dismiss") {
+                                    isPresentingNewSurveyView = false
+                                    newSurveyData = ADLSurvey.Data()
+                                }
+                            }
+                            ToolbarItem(placement: .confirmationAction) {
+                                Button("Add") {
+                                    let newSurvey = ADLSurvey(data: newSurveyData)
+                                    ADL.append(newSurvey)
+                                    isPresentingNewSurveyView = false
+                                    newSurveyData = ADLSurvey.Data()
+                                }
+                            }
+                        }
+                        .foregroundColor(.black)
+                }
+            }
+            .frame(width: 440, height: 800, alignment: .center)
         }
-        .offset(y: -150)
-        
-        
-        
-        
-        
     }
 }
 
 struct ADLView_Previews: PreviewProvider {
     static var previews: some View {
-        ADLView()
+        NavigationView {
+            ADLView(ADL: .constant(ADLSurvey.sampleData))
+        }
     }
 }
+
+
+
+
+

@@ -28,6 +28,8 @@ struct LoginView: View {
             Spacer()
             TextField("Email Address", text: $loginVM.credentials.email)
                 .keyboardType(.emailAddress)
+                .disableAutocorrection(true)
+
             SecureField("Password", text: $loginVM.credentials.password)
             if loginVM.showProgressView
             {

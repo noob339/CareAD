@@ -19,6 +19,7 @@ struct Quiz
 struct quizModel
 {
     var question: String
+    
     var answer: String
     var optionList: [quizOption]
 }
@@ -26,6 +27,7 @@ struct quizModel
 struct quizOption: Identifiable
 {
     var id: Int
+    var questionValue: Int
     var optionId: String
     var option: String
     var color: Color

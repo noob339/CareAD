@@ -7,16 +7,29 @@
 
 import SwiftUI
 
-struct Profile: Identifiable
+struct Profile//: Identifiable
 {
     //should these be constant?
     //var credentials = Credentials(email: email, password: password)
-    let id: UUID
+    //let id: UUID
     var fName:String = ""
     var lName: String = ""
     var email: String = ""  // = credentials.email //uses the credentials struct
     var password: String = "" // = credentials.password
     var phoneNumber: String = ""
+}
+
+extension Profile{
+    static let sampleData: [Profile] =
+    [
+        Profile(fName: "Julio", lName: "Marte", email: "jdawg@gmail.com", password: "", phoneNumber: "888-888-8888"),
+        Profile(fName: "Geliana", lName: "Pujols", email: "gpujols@gmail.com", password: "", phoneNumber: "212-212-2112"),
+        Profile(fName: "Jacob", lName: "Ogando", email: "jogando@gmail.com", password: "", phoneNumber: "718-718-7118"),
+       
+    ]
+}
+
+/*
     
     //methods to update, save, set, etc
     
@@ -83,4 +96,4 @@ extension Profile
 //    }
 //}
 
-
+*/
