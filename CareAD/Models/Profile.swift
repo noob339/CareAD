@@ -9,7 +9,6 @@ import SwiftUI
 
 struct Profile//: Identifiable
 {
-    //should these be constant?
     //var credentials = Credentials(email: email, password: password)
     //let id: UUID
     var fName:String = ""
